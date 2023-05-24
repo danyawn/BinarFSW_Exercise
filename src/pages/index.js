@@ -15,7 +15,7 @@ const index = () => {
       });
   }, [])
 
-  console.log('data', data);
+  // console.log('data', data);
 
   return (
     <div className='w-full flex justify-center items-center mt-7 flex-col gap-10'>
