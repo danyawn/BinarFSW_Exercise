@@ -19,12 +19,20 @@ const Search = () => {
     }
 
     const handleSearch = () => {
-        axios.get(`${api}${user}&per_page=20`)
-            .then((result) => {
-                // console.log('res', result.data.items)
-                setRes([result.data])
-                setLoading(false)
-            }).catch((err) => console.log(err))
+        // axios.get(`${api}${user}&per_page=20`)
+        //     .then((result) => {
+        //         // console.log('res', result.data.items)
+        //         setRes([result.data])
+        //         setLoading(false)
+        //     }).catch((err) => console.log(err))
+
+        axios({
+            url: `${api}${user}&per_page=20`,
+        }).then((result) => {
+            // console.log('result',result.data.items)
+            setRes([result.data])
+            setLoading(false)
+        })
     }
 
     // console.log('res', res);
