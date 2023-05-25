@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import Card from './Card'
 import { Blocks } from 'react-loader-spinner'
@@ -7,6 +7,7 @@ import { Blocks } from 'react-loader-spinner'
 const Search = () => {
 
     const [user, setUser] = useState()
+    const [search, setSearch] = useState()
     const [res, setRes] = useState([])
     const [loading, setLoading] = useState(true)
     const api = 'https:/api.github.com/search/users?q='
@@ -18,21 +19,33 @@ const Search = () => {
         setLoading(true)
     }
 
-    const handleSearch = () => {
-        // axios.get(`${api}${user}&per_page=20`)
-        //     .then((result) => {
-        //         // console.log('res', result.data.items)
-        //         setRes([result.data])
-        //         setLoading(false)
-        //     }).catch((err) => console.log(err))
+    // useEffect(() => {
+    //     axios({
+    //         url: `${api}${user}&per_page=20`,
+    //     }).then((result) => {
+    //         // console.log('result',result.data.items)
+    //         setRes([result.data])
+    //         setLoading(false)
+    //     })
+    // }, [])
 
-        axios({
-            url: `${api}${user}&per_page=20`,
-        }).then((result) => {
-            // console.log('result',result.data.items)
-            setRes([result.data])
-            setLoading(false)
-        })
+    const handleSearch = () => {
+        axios.get(`${api}${user}&per_page=20`)
+            .then((result) => {
+                // console.log('res', result.data.items)
+                setRes([result.data])
+                setLoading(false)
+            }).catch((err) => console.log(err))
+        
+        // setSearch(user)
+
+        // axios({
+        //     url: `${api}${user}&per_page=20`,
+        // }).then((result) => {
+        //     // console.log('result',result.data.items)
+        //     setRes([result.data])
+        //     setLoading(false)
+        // })
     }
 
     // console.log('res', res);
