@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import Card from './Card'
 import { Blocks } from 'react-loader-spinner'
@@ -9,7 +9,9 @@ const Search = () => {
     const [user, setUser] = useState()
     const [res, setRes] = useState([])
     const [loading, setLoading] = useState(true)
+    const api = 'https:/api.github.com/search/users?q='
 
+    // https:/api.github.com/search/users?q=${user}&per_page=20
     const handleUser = (e) => {
         // console.log('e', e.target.value);
         setUser(e.target.value)
@@ -17,7 +19,7 @@ const Search = () => {
     }
 
     const handleSearch = () => {
-        axios.get(`https:/api.github.com/search/users?q=${user}&per_page=20`)
+        axios.get(`${api}${user}&per_page=20`)
             .then((result) => {
                 // console.log('res', result.data.items)
                 setRes([result.data])
